@@ -17,7 +17,7 @@ variable "DBAllocatedStorage" {
 }
 
 variable "StorageType" {
-  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (new generation of general purpose SSD), or 'io1' (provisioned IOPS SSD).
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (new generation of general purpose SSD), or 'io1' (provisioned IOPS SSD)"
   type        = string
   default     = null
 }
