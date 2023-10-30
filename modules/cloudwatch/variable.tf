@@ -8,42 +8,52 @@ variable "name" {
   default     = ""
   description = "Alarm Name Prefix"
 }
-
+variable "metric_threshold" {
+  type        = number
+  default     = 40
+  description = "The value against which the specified statistic is compared."
+}
 variable "evaluation_period" {
   type        = string
   default     = "5"
   description = "The evaluation period over which to use when triggering alarms."
 }
-
+variable "alarm_description" {
+  type        = string2
+  default     = ""
+  description = "Alarm description"
+}
 variable "statistic_period" {
   type        = string
   default     = "60"
   description = "The number of seconds that make each statistic period."
 }
+variable "comparison_operator" {
+  type        = string
+  description = "The arithmetic operation to use when comparing the specified Statistic and Threshold."
+  sensitive   = true
+}
 
+variable "namespace" {
+  type        = string
+  default     = "AWS/EC2"
+  description = "The namespace for the alarm's associated metric."
+  sensitive   = true
+}
+variable "metric_name" {
+  type        = string
+  default     = "CPUUtilization"
+  description = "The name for the alarm's associated metric."
+}
+variable "period" {
+  type        = number
+  default     = 120
+  description = "The period in seconds over which the specified statistic is applied."
+}
 variable "create_high_cpu_alarm" {
   type        = bool
   default     = true
   description = "Whether or not to create the high cpu alarm.  Default is to create it (for backwards compatible support)"
-}
-
-variable "create_low_cpu_credit_alarm" {
-  type        = bool
-  default     = true
-  description = "Whether or not to create the low cpu credit alarm.  Default is to create it (for backwards compatible support)"
-}
-
-
-variable "create_low_disk_space_alarm" {
-  type        = bool
-  default     = true
-  description = "Whether or not to create the low disk space alarm.  Default is to create it (for backwards compatible support)"
-}
-
-riable "create_low_memory_alarm" {
-  type        = bool
-  default     = true
-  description = "Whether or not to create the low memory free alarm.  Default is to create it (for backwards compatible support)"
 }
 
 variable "actions_alarm" {
@@ -57,38 +67,6 @@ variable "actions_ok" {
   default     = []
   description = "A list of actions to take when alarms are cleared. Will likely be an SNS topic for event distribution."
 }
-
-variable "cpu_utilization_too_high_threshold" {
-  type        = string
-  default     = "90"
-  description = "Alarm threshold for the 'highCPUUtilization' alarm"
-}
-
-
-variable "disk_free_storage_space_too_low_threshold" {
-  type        = string
-  default     = "10000000000" // 10 GB
-  description = "Alarm threshold for the 'lowFreeStorageSpace' alarm"
-}
-
-variable "disk_burst_balance_too_low_threshold" {
-  type        = string
-  default     = "100"
-  description = "Alarm threshold for the 'lowEBSBurstBalance' alarm"
-}
-
-variable "memory_freeable_too_low_threshold" {
-  type        = string
-  default     = "256000000" // 256 MB
-  description = "Alarm threshold for the 'lowFreeableMemory' alarm"
-}
-
-variable "memory_swap_usage_too_high_threshold" {
-  type        = string
-  default     = "256000000" // 256 MB
-  description = "Alarm threshold for the 'highSwapUsage' alarm"
-}
-
 variable "tags" {
   type        = map(string)
   default     = {}

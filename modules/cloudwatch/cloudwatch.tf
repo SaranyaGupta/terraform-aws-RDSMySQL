@@ -2,16 +2,15 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   count               = var.create_high_cpu_alarm ? 1 : 0
   alarm_name          = var.name
   comparison_operator = var.comparison_operator
-  evaluation_periods  = var.evaluation_periods
+  evaluation_periods  = var.evaluation_period
   metric_name         = var.metric_name
   namespace           = var.namespace
   period              = var.period
-  statistic           = var.statistic
-  threshold           = var.cpu_utilization_too_high_threshold
+  statistic           = var.statistic_period
+  threshold           = var.metric_threshold
   alarm_description   = var.alarm_description
-  alarm_actions       = aws_sns_topic.default.*.arn
-  ok_actions          = aws_sns_topic.default.*.arn
-
+  alarm_actions       = var.actions_alarm
+  ok_actions          = var.actions_ok
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
