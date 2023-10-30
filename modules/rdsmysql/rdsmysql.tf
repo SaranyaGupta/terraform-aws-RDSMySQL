@@ -13,7 +13,6 @@ locals {
   is_replica = var.replicate_source_db != null
 }
 
-# Ref. https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces
 data "aws_partition" "current" {}
 
 resource "random_id" "snapshot_identifier" {
@@ -26,7 +25,7 @@ resource "random_id" "snapshot_identifier" {
   byte_length = 4
 }
 
-resource "aws_db_instance" "this" {
+resource "aws_db_instance" "rdsmysql" {
   count = var.create ? 1 : 0
 
   identifier        = local.identifier
@@ -130,24 +129,15 @@ resource "aws_db_instance" "this" {
 
   tags = var.tags
 
-  depends_on = [aws_cloudwatch_log_group.this]
+  depends_on = [aws_cloudwatch_log_group.loggroup]
 
   timeouts {
     create = lookup(var.timeouts, "create", null)
     delete = lookup(var.timeouts, "delete", null)
     update = lookup(var.timeouts, "update", null)
   }
-
-  # Note: do not add `latest_restorable_time` to `ignore_changes`
-  # https://github.com/terraform-aws-modules/terraform-aws-rds/issues/478
 }
-
-################################################################################
-# CloudWatch Log Group
-################################################################################
-
-# Log groups will not be created if using an identifier prefix
-resource "aws_cloudwatch_log_group" "this" {
+resource "aws_cloudwatch_log_group" "loggroup" {
   for_each = toset([for log in var.enabled_cloudwatch_logs_exports : log if var.create && var.create_cloudwatch_log_group && !var.use_identifier_prefix])
 
   name              = "/aws/rds/instance/${var.identifier}/${each.value}"
@@ -157,9 +147,6 @@ resource "aws_cloudwatch_log_group" "this" {
   tags = var.tags
 }
 
-################################################################################
-# Enhanced monitoring
-################################################################################
 
 data "aws_iam_policy_document" "enhanced_monitoring" {
   statement {
