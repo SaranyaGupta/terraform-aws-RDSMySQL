@@ -9,15 +9,20 @@ variable "instance_use_identifier_prefix" {
   default     = false
 }
 
+variable "custom_iam_instance_profile" {
+  description = "RDS custom iam instance profile"
+  type        = string
+  default     = null
+}
 
-variable "DBAllocatedStorage" {
+variable "allocated_storage" {
   description = "The allocated storage in gigabytes"
   type        = number
   default     = null
 }
 
-variable "StorageType" {
-  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (new generation of general purpose SSD), or 'io1' (provisioned IOPS SSD)"
+variable "storage_type" {
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (new generation of general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'gp2' if not. If you specify 'io1' or 'gp3' , you must also include a value for the 'iops' parameter"
   type        = string
   default     = null
 }
@@ -28,10 +33,16 @@ variable "storage_throughput" {
   default     = null
 }
 
-variable "StorageEncrypted" {
+variable "storage_encrypted" {
   description = "Specifies whether the DB instance is encrypted"
   type        = bool
   default     = true
+}
+
+variable "kms_key_id" {
+  description = "The ARN for the KMS encryption key. If creating an encrypted replica, set this to the destination KMS ARN. If storage_encrypted is set to true and kms_key_id is not specified the default KMS key created in your account will be used. Be sure to use the full ARN, not a key alias."
+  type        = string
+  default     = null
 }
 
 variable "replicate_source_db" {
@@ -40,7 +51,7 @@ variable "replicate_source_db" {
   default     = null
 }
 
-variable "LicenseModel" {
+variable "license_model" {
   description = "License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1"
   type        = string
   default     = null
@@ -58,13 +69,25 @@ variable "iam_database_authentication_enabled" {
   default     = false
 }
 
-variable "Engine" {
+variable "domain" {
+  description = "The ID of the Directory Service Active Directory domain to create the instance in"
+  type        = string
+  default     = null
+}
+
+variable "domain_iam_role_name" {
+  description = "(Required if domain is provided) The name of the IAM role to be used when making API calls to the Directory Service"
+  type        = string
+  default     = null
+}
+
+variable "engine" {
   description = "The database engine to use"
   type        = string
   default     = null
 }
 
-variable "EngineVersion" {
+variable "engine_version" {
   description = "The engine version to use"
   type        = string
   default     = null
@@ -94,28 +117,53 @@ variable "final_snapshot_identifier_prefix" {
   default     = "final"
 }
 
-variable "DBInstanceClass" {
+variable "instance_class" {
   description = "The instance type of the RDS instance"
   type        = string
   default     = null
 }
 
-variable "DBName" {
+variable "db_name" {
   description = "The DB name to create. If omitted, no database is created initially"
   type        = string
   default     = null
 }
 
-variable "DBUsername" {
+variable "username" {
   description = "Username for the master DB user"
   type        = string
   default     = null
 }
 
-variable "DBPassword" {
+variable "password" {
+  description = <<EOF
+  Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file.
+  The password provided will not be used if `manage_master_user_password` is set to true.
+  EOF
   type        = string
   default     = null
   sensitive   = true
+}
+
+variable "manage_master_user_password" {
+  description = "Set to true to allow RDS to manage the master user password in Secrets Manager"
+  type        = bool
+  default     = true
+}
+
+variable "master_user_secret_kms_key_id" {
+  description = <<EOF
+  The key ARN, key ID, alias ARN or alias name for the KMS key to encrypt the master user password secret in Secrets Manager.
+  If not specified, the default KMS key for your Amazon Web Services account is used.
+  EOF
+  type        = string
+  default     = null
+}
+
+variable "port" {
+  description = "The port on which the DB accepts connections"
+  type        = string
+  default     = null
 }
 
 variable "vpc_security_group_ids" {
@@ -427,7 +475,7 @@ variable "deletion_protection" {
   default     = false
 }
 
-variable "EnablePerformanceInsights" {
+variable "performance_insights_enabled" {
   description = "Specifies whether Performance Insights are enabled"
   type        = bool
   default     = false
@@ -437,6 +485,12 @@ variable "performance_insights_retention_period" {
   description = "The amount of time in days to retain Performance Insights data. Valid values are `7`, `731` (2 years) or a multiple of `31`"
   type        = number
   default     = 7
+}
+
+variable "performance_insights_kms_key_id" {
+  description = "The ARN for the KMS key to encrypt Performance Insights data"
+  type        = string
+  default     = null
 }
 
 variable "max_allocated_storage" {
@@ -463,6 +517,9 @@ variable "network_type" {
   default     = null
 }
 
+################################################################################
+# CloudWatch Log Group
+################################################################################
 
 variable "create_cloudwatch_log_group" {
   description = "Determines whether a CloudWatch log group is created for each `enabled_cloudwatch_logs_exports`"
@@ -482,3 +539,8 @@ variable "cloudwatch_log_group_kms_key_id" {
   default     = null
 }
 
+variable "db_instance_role_associations" {
+  description = "A map of DB instance supported feature name to role association ARNs."
+  type        = map(any)
+  default     = {}
+}
