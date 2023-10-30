@@ -1,16 +1,10 @@
 locals {
   monitoring_role_arn = var.create_monitoring_role ? aws_iam_role.enhanced_monitoring[0].arn : var.monitoring_role_arn
-
   final_snapshot_identifier = var.skip_final_snapshot ? null : "${var.final_snapshot_identifier_prefix}-${var.identifier}-${try(random_id.snapshot_identifier[0].hex, "")}"
-
   identifier        = var.use_identifier_prefix ? null : var.identifier
   identifier_prefix = var.use_identifier_prefix ? "${var.identifier}-" : null
-
   monitoring_role_name        = var.monitoring_role_use_name_prefix ? null : var.monitoring_role_name
   monitoring_role_name_prefix = var.monitoring_role_use_name_prefix ? "${var.monitoring_role_name}-" : null
-
-  # Replicas will use source metadata
-  is_replica = var.replicate_source_db != null
 }
 
 data "aws_partition" "current" {}
@@ -31,25 +25,25 @@ resource "aws_db_instance" "rdsmysql" {
   identifier        = local.identifier
   identifier_prefix = local.identifier_prefix
 
-  engine            = local.is_replica ? null : var.engine
+  engine            = var.engine
   engine_version    = var.engine_version
   instance_class    = var.instance_class
-  allocated_storage = local.is_replica ? null : var.allocated_storage
+  allocated_storage = var.allocated_storage
   storage_type      = var.storage_type
   storage_encrypted = var.storage_encrypted
   kms_key_id        = var.kms_key_id
   license_model     = var.license_model
 
   db_name                             = var.db_name
-  username                            = !local.is_replica ? var.username : null
-  password                            = !local.is_replica && var.manage_master_user_password ? null : var.password
+  username                            = var.username
+  password                            = var.password
   port                                = var.port
   domain                              = var.domain
   domain_iam_role_name                = var.domain_iam_role_name
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
   custom_iam_instance_profile         = var.custom_iam_instance_profile
-  manage_master_user_password         = !local.is_replica && var.manage_master_user_password ? var.manage_master_user_password : null
-  master_user_secret_kms_key_id       = !local.is_replica && var.manage_master_user_password ? var.master_user_secret_kms_key_id : null
+  manage_master_user_password         = var.manage_master_user_password
+  master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
 
   vpc_security_group_ids = var.vpc_security_group_ids
   db_subnet_group_name   = var.db_subnet_group_name
@@ -69,7 +63,6 @@ resource "aws_db_instance" "rdsmysql" {
   apply_immediately           = var.apply_immediately
   maintenance_window          = var.maintenance_window
 
-  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html
   dynamic "blue_green_update" {
     for_each = length(var.blue_green_update) > 0 ? [var.blue_green_update] : []
 
