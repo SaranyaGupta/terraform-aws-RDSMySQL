@@ -16,7 +16,7 @@ variable "option_name_prefix" {
   default     = true
 }
 
-variable "option_group_description" {
+variable "description" {
   description = "The description of the option group"
   type        = string
   default     = null
