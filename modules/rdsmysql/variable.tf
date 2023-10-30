@@ -396,9 +396,7 @@ variable "network_type" {
   default     = null
 }
 
-################################################################################
-# CloudWatch Log Group
-################################################################################
+
 
 variable "create_cloudwatch_log_group" {
   description = "Determines whether a CloudWatch log group is created for each `enabled_cloudwatch_logs_exports`"

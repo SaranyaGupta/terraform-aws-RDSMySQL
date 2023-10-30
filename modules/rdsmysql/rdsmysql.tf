@@ -62,7 +62,7 @@ resource "aws_db_instance" "rdsmysql" {
   auto_minor_version_upgrade  = var.auto_minor_version_upgrade
   apply_immediately           = var.apply_immediately
   maintenance_window          = var.maintenance_window
-
+/*
   dynamic "blue_green_update" {
     for_each = length(var.blue_green_update) > 0 ? [var.blue_green_update] : []
 
@@ -70,7 +70,7 @@ resource "aws_db_instance" "rdsmysql" {
       enabled = try(blue_green_update.value.enabled, null)
     }
   }
-
+*/
   snapshot_identifier       = var.snapshot_identifier
   copy_tags_to_snapshot     = var.copy_tags_to_snapshot
   skip_final_snapshot       = var.skip_final_snapshot
@@ -95,7 +95,7 @@ resource "aws_db_instance" "rdsmysql" {
 
   deletion_protection      = var.deletion_protection
   delete_automated_backups = var.delete_automated_backups
-
+  /*
   dynamic "restore_to_point_in_time" {
     for_each = var.restore_to_point_in_time != null ? [var.restore_to_point_in_time] : []
 
@@ -119,7 +119,7 @@ resource "aws_db_instance" "rdsmysql" {
       ingestion_role        = s3_import.value.ingestion_role
     }
   }
-
+*/
   tags = var.tags
 
   depends_on = [aws_cloudwatch_log_group.loggroup]
