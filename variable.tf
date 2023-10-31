@@ -81,7 +81,10 @@ variable "major_engine_version" {
   type        = string
   default     = null
 }
-
+variable "engine" {
+  type        = string
+  default     = null
+}
 variable "options" {
   description = "A list of Options to apply"
   type        = any

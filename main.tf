@@ -13,8 +13,8 @@ module "db_subnet_group" {
   tags = merge(var.tags, var.db_subnet_group_tags)
 }
 module "db_parameter_group" {
-  source          = "modules/db_parameter_group"
-  create          = local.create_db_parameter_group
+  source          = "./modules/db_parameter_group"
+  create          = var.create_db_parameter_group
   parameter_name  = var.parameter_group_name
   parameter_name_prefix = var.parameter_group_use_name_prefix
   description     = var.parameter_group_description
@@ -25,8 +25,8 @@ module "db_parameter_group" {
 }
 
 module "db_option_group" {
-  source                   = "modules/db_option_group"
-  create                   = local.create_db_option_group  
+  source                   = "./modules/db_option_group"
+  create                   = var.create_db_option_group  
   option_name              = var.option_group_name
   option_name_prefix       = var.option_group_use_name_prefix
   description              = var.option_group_description
