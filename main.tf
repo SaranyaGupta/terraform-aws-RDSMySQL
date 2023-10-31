@@ -18,7 +18,7 @@ module "db_subnet_group" {
 
   tags = merge(var.tags, var.db_subnet_group_tags)
 }
-
+/*
 module "db_parameter_group" {
   source          = "modules/db_parameter_group"
   create          = local.create_db_parameter_group
@@ -127,3 +127,4 @@ module "db_instance" {
 
   tags = merge(var.tags, var.db_instance_tags)
 }
+*/
