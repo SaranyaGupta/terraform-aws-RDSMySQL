@@ -1,3 +1,4 @@
+/*
 locals {
   create_db_subnet_group    = var.create_db_subnet_group
   create_db_parameter_group = var.create_db_parameter_group
@@ -7,10 +8,10 @@ locals {
   create_db_option_group    = var.create_db_option_group
   option_group              = local.create_db_option_group ? module.db_option_group.db_option_group_id : var.option_group_name
 }
-
+*/
 module "db_subnet_group" {
   source          = "modules/db_subnet_group"
-  create          = local.create_db_subnet_group
+  create          = var.create_db_subnet_group
   name            = var.db_subnet_group_name
   use_name_prefix = var.db_subnet_group_use_name_prefix
   description     = var.db_subnet_group_description
