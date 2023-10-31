@@ -13,3 +13,22 @@
   engine            = "mysql"
   option_group_name = "rdsmysql-option-group"
   option_group_description = "test db rds mysql option group"
+  parameters = "[{
+      name  = "character_set_client"
+      value = "utf8mb4"
+    },
+    {
+      name  = "character_set_server"
+      value = "utf8mb4"
+    }
+  ]"
+options = "[
+        {
+          name  = "SERVER_AUDIT_EVENTS"
+          value = "CONNECT"
+        },
+        {
+          name  = "SERVER_AUDIT_FILE_ROTATIONS"
+          value = "37"
+        },
+      ]"
