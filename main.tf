@@ -47,7 +47,7 @@ module "db_option_group" {
 }
 
 module "db_instance" {
-  source = "modules/db_instance"
+  source = "modules/rdsmysql"
 
   create                              = local.create_db_instance
   identifier                          = var.identifier
