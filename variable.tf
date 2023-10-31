@@ -79,11 +79,11 @@ variable "option_group_description" {
 variable "major_engine_version" {
   description = "Specifies the major version of the engine that this option group should be associated with"
   type        = string
-  default     = null
+  default     = ""
 }
 variable "engine" {
   type        = string
-  default     = null
+  default     = ""
 }
 variable "options" {
   description = "A list of Options to apply"
@@ -123,7 +123,7 @@ variable "parameter_group_description" {
 variable "family" {
   description = "The family of the DB parameter group"
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "parameters" {
