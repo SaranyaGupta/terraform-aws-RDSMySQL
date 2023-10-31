@@ -10,7 +10,7 @@ locals {
 }
 */
 module "db_subnet_group" {
-  source          = "modules/db_subnet_group"
+  source          = "./db_subnet_group"
   create          = var.create_db_subnet_group
   name            = var.db_subnet_group_name
   use_name_prefix = var.db_subnet_group_use_name_prefix
