@@ -10,7 +10,7 @@ output "enhanced_monitoring_iam_role_arn" {
 
 output "db_instance_address" {
   description = "The address of the RDS instance"
-  value       = try(aws_db_instance.this[0].address, null)
+  value       = try(aws_db_instance.rdsmysql[0].address, null)
 }
 
 output "db_instance_arn" {
