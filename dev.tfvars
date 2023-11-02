@@ -32,3 +32,33 @@ options = "[
           value = "37"
         },
       ]"
+      
+identifier ="rds-mysql-test"
+engine    ="MySQL Community"
+engine_version="8.0.28"
+instance_class="db.m5.xlarge"
+allocated_storage= 150
+storage_type="gp2"
+license_model="General Public License"
+db_name="testdb"
+username="testuser"                          
+port=3306
+vpc_security_group_ids="subnet-04eff055558594bd7"
+network_type="IPv4"
+availability_zone="us-east-2a"
+multi_az=true
+ca_cert_identifier="rds-ca-2019"
+maintenance_window="Mon:00:00-Mon:03:00"
+snapshot_identifier="test"
+skip_final_snapshot=true
+backup_retention_period=14
+backup_window="09:46-10:16"
+max_allocated_storage=250
+create_monitoring_role=true
+enabled_cloudwatch_logs_exports=["error","general","slowquery"]
+cloudwatch_log_group_retention_in_days=7
+deletion_protection=true
+db_instance_tags= [ {
+    Owner       = "user"
+    Environment = "test"
+  }]
