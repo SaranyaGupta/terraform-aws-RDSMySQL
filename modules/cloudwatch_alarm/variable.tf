@@ -4,7 +4,7 @@ variable "db_instance_id" {
 }
 
 variable "name" {
-  type        = string2
+  type        = string
   default     = ""
   description = "Alarm Name Prefix"
 }
@@ -19,7 +19,7 @@ variable "evaluation_period" {
   description = "The evaluation period over which to use when triggering alarms."
 }
 variable "alarm_description" {
-  type        = string2
+  type        = string
   default     = ""
   description = "Alarm description"
 }
