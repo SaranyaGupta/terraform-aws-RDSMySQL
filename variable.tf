@@ -365,13 +365,13 @@ variable "parameter_group_name" {
   type        = string
   default     = null
 }
-
+/*
 variable "parameter_group_use_name_prefix" {
   description = "Determines whether to use `parameter_group_name` as is or create a unique name beginning with the `parameter_group_name` as the prefix"
   type        = bool
   default     = false
 }
-
+*/
 variable "parameter_group_description" {
   description = "Description of the DB parameter group to create"
   type        = string

@@ -2,7 +2,7 @@ resource "aws_db_parameter_group" "parameter_group" {
   count = var.create ? 1 : 0
 
   name        = var.parameter_name
-  name_prefix = var.parameter_name_prefix
+  #name_prefix = var.parameter_name_prefix
   description = var.description
   family      = var.family
 

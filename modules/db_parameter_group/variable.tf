@@ -9,13 +9,13 @@ variable "parameter_name" {
   type        = string
   default     = ""
 }
-
+/*
 variable "parameter_name_prefix" {
   description = "Determines whether to use `name` as is or create a unique name beginning with `name` as the specified prefix"
   type        = bool
   default     = false
 }
-
+*/
 variable "description" {
   description = "The description of the DB parameter group"
   type        = string
