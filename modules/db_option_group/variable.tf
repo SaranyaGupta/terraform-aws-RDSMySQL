@@ -10,11 +10,6 @@ variable "option_name" {
   default     = ""
 }
 
-variable "option_name_prefix" {
-  description = "Determines whether to use `name` as is or create a unique name beginning with `name` as the specified prefix"
-  type        = bool
-  default     = false
-}
 
 variable "description" {
   description = "The description of the option group"

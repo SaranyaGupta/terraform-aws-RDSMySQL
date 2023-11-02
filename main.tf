@@ -28,7 +28,6 @@ module "db_option_group" {
   source                   = "./modules/db_option_group"
   create                   = var.create_db_option_group  
   option_name              = var.option_group_name
-  option_name_prefix       = var.option_group_use_name_prefix
   description              = var.option_group_description
   engine_name              = var.engine
   major_engine_version     = var.major_engine_version
@@ -62,9 +61,9 @@ module "db_instance" {
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
   vpc_security_group_ids              = var.vpc_security_group_ids
-  db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name}"
-  parameter_group_name                = module.db_parameter_group.db_parameter_group_id[*]
-  option_group_name                   = module.db_option_group.db_option_group_id[*]
+  db_subnet_group_name                = var.db_subnet_group_name
+  parameter_group_name                = var.parameter_group_name
+  option_group_name                   = var.option_group_name
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az

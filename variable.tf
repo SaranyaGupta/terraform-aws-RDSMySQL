@@ -403,11 +403,6 @@ variable "option_group_name" {
   default     = null
 }
 
-variable "option_group_use_name_prefix" {
-  description = "Determines whether to use `option_group_name` as is or create a unique name beginning with the `option_group_name` as the prefix"
-  type        = bool
-  default     = true
-}
 
 variable "option_group_description" {
   description = "The description of the option group"
