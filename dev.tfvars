@@ -13,6 +13,7 @@
   engine            = "mysql"
   option_group_name = "rdsmysql-option-group"
   option_group_description = "test db rds mysql option group"
+ /*
   parameters = "[{
       name  = "character_set_client"
       value = "utf8mb4"
@@ -32,7 +33,7 @@ options = "[
           value = "37"
         },
       ]"
-      
+   */   
 identifier ="rds-mysql-test"
 engine    ="MySQL Community"
 engine_version="8.0.28"
