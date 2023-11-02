@@ -1,5 +1,5 @@
-identifier ="rds-mysql-test"
-engine    ="MySQL Community"
+identifier="rds-mysql-test"
+engine="MySQL Community"
 engine_version="8.0.28"
 instance_class="db.m5.xlarge"
 allocated_storage= 150
@@ -26,17 +26,17 @@ deletion_protection=true
 db_instance_tags= [{
     Owner       = "user"
     Environment = "test"}]
-db_subnet_group_name            = "rdsmysql-subnet"
-db_subnet_group_description     = "test db rds mysql subnet group"
-subnet_ids      = "subnet-04eff055558594bd7"
+db_subnet_group_name= "rdsmysql-subnet"
+db_subnet_group_description= "test db rds mysql subnet group"
+subnet_ids= "subnet-04eff055558594bd7"
 tags = ["resource" = "rdsmysql"]
-db_subnet_group_tags = ["name"="rdsmysql-subnet"]
-db_option_group_tags = ["name"="rdsmysql-option-group"]
-db_parameter_group_tags = ["name"="rdsmysql-parameter-group"]
-parameter_group_name = "rdsmysql-parameter-group"
-parameter_group_description = "test db rds mysql parameter group"
-family  = "mysql5.7"
-major_engine_version = "5.7"
-engine            = "mysql"
-option_group_name = "rdsmysql-option-group"
-option_group_description = "test db rds mysql option group" 
+db_subnet_group_tags= ["name"="rdsmysql-subnet"]
+db_option_group_tags= ["name"="rdsmysql-option-group"]
+db_parameter_group_tags= ["name"="rdsmysql-parameter-group"]
+parameter_group_name= "rdsmysql-parameter-group"
+parameter_group_description= "test db rds mysql parameter group"
+family= "mysql5.7"
+major_engine_version= "5.7"
+engine= "mysql"
+option_group_name= "rdsmysql-option-group"
+option_group_description= "test db rds mysql option group" 
