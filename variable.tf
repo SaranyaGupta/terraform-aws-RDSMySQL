@@ -338,7 +338,7 @@ variable "db_subnet_group_name" {
 variable "db_subnet_group_use_name_prefix" {
   description = "Determines whether to use `subnet_group_name` as is or create a unique name beginning with the `subnet_group_name` as the prefix"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "db_subnet_group_description" {
@@ -369,7 +369,7 @@ variable "parameter_group_name" {
 variable "parameter_group_use_name_prefix" {
   description = "Determines whether to use `parameter_group_name` as is or create a unique name beginning with the `parameter_group_name` as the prefix"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "parameter_group_description" {
