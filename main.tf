@@ -62,7 +62,7 @@ module "db_instance" {
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
   vpc_security_group_ids              = var.vpc_security_group_ids
-  db_subnet_group_name                = module.db_subnet_group.db_subnet_group_name
+  db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name}"
   parameter_group_name                = module.db_parameter_group.db_parameter_group_id[*]
   option_group_name                   = module.db_option_group.db_option_group_id[*]
   network_type                        = var.network_type
