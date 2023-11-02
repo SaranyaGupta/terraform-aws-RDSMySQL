@@ -1,6 +1,7 @@
 variable "identifier" {
   description = "The name of the RDS instance"
   type        = string
+  default = "rds-mysql-test"
 }
 
 variable "instance_use_identifier_prefix" {
