@@ -78,10 +78,10 @@ module "db_instance" {
   maintenance_window                  = var.maintenance_window
   blue_green_update                   = var.blue_green_update
 
-  snapshot_identifier                 = var.snapshot_identifier
-  copy_tags_to_snapshot               = var.copy_tags_to_snapshot
+  #snapshot_identifier                 = var.snapshot_identifier
+  #copy_tags_to_snapshot               = var.copy_tags_to_snapshot
   skip_final_snapshot                 = var.skip_final_snapshot
-  final_snapshot_identifier_prefix    = var.final_snapshot_identifier_prefix
+  #final_snapshot_identifier_prefix    = var.final_snapshot_identifier_prefix
 
   performance_insights_enabled          = var.performance_insights_enabled
   performance_insights_retention_period = var.performance_insights_retention_period
