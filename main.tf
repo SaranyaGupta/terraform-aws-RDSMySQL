@@ -38,7 +38,6 @@ module "db_option_group" {
 }
 module "db_instance" {
   source = "./modules/rdsmysql"
-depends_on = [module.db_subnet_group]
   create                              = var.create_db_instance
   identifier                          = var.identifier
   use_identifier_prefix               = var.instance_use_identifier_prefix
@@ -63,7 +62,7 @@ depends_on = [module.db_subnet_group]
   vpc_security_group_ids              = var.vpc_security_group_ids
   db_subnet_group_name                = var.db_subnet_group_name
   parameter_group_name                = var.parameter_group_name
-  option_group_name                   = var.option_group_name
+  option_group_name                   = module.db_option_group.db_option_group_name
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az
