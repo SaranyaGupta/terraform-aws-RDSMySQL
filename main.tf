@@ -38,7 +38,7 @@ module "db_option_group" {
 }
 module "db_instance" {
   source = "./modules/rdsmysql"
-
+depends_on = [module.module.db_subnet_group]
   create                              = var.create_db_instance
   identifier                          = var.identifier
   use_identifier_prefix               = var.instance_use_identifier_prefix
