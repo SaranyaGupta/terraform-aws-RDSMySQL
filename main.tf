@@ -6,7 +6,7 @@ module "db_subnet_group" {
   source          = "./modules/db_subnet_group"
   create          = var.create_db_subnet_group
   subnet_name     = var.db_subnet_group_name
-  subnet_name_prefix     = var.db_subnet_group_use_name_prefix
+  #subnet_name_prefix     = var.db_subnet_group_use_name_prefix
   description     = var.db_subnet_group_description
   subnet_ids      = var.subnet_ids
 
@@ -62,7 +62,7 @@ module "db_instance" {
   vpc_security_group_ids              = var.vpc_security_group_ids
   db_subnet_group_name                = var.db_subnet_group_name
   parameter_group_name                = var.parameter_group_name
-  option_group_name                   = module.db_option_group.db_option_group_name
+  option_group_name                   = "${module.db_option_group.db_option_group_name}"
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az
