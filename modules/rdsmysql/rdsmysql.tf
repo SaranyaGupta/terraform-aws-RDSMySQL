@@ -62,8 +62,8 @@ resource "aws_db_instance" "rdsmysql" {
   auto_minor_version_upgrade  = var.auto_minor_version_upgrade
   apply_immediately           = var.apply_immediately
   maintenance_window          = var.maintenance_window
-  snapshot_identifier       = var.snapshot_identifier
-  copy_tags_to_snapshot     = var.copy_tags_to_snapshot
+  #snapshot_identifier       = var.snapshot_identifier
+  #copy_tags_to_snapshot     = var.copy_tags_to_snapshot
   skip_final_snapshot       = var.skip_final_snapshot
   #final_snapshot_identifier = var.final_snapshot_identifier
 
