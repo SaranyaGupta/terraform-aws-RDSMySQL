@@ -326,7 +326,7 @@ variable "db_subnet_group_tags" {
 variable "create_db_subnet_group" {
   description = "Whether to create a database subnet group"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "db_subnet_group_name" {
