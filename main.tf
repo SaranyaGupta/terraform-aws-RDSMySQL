@@ -62,7 +62,7 @@ module "db_instance" {
   vpc_security_group_ids              = var.vpc_security_group_ids
   db_subnet_group_name                = var.db_subnet_group_name
   parameter_group_name                = var.parameter_group_name
-  option_group_name                   = "${module.db_option_group.db_option_group_name}"
+  option_group_name                   = module.db_option_group.option_name
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az
