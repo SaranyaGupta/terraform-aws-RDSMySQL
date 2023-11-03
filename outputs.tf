@@ -129,10 +129,7 @@ output "db_option_group_arn" {
   description = "The ARN of the db option group"
   value       = module.db_option_group.db_option_group_arn
 }
-output "db_option_group_name" {
-  description = "The name of the db option group"
-  value       = module.db_option_group.db_option_group_arn
-}
+
 
 output "db_instance_cloudwatch_log_groups" {
   description = "Map of CloudWatch log groups created and their attributes"
