@@ -1,5 +1,5 @@
 identifier="rds-mysql-test"
-engine="MySQL Community"
+engine="MySQL"
 engine_version="8.0.28"
 instance_class="db.m5.xlarge"
 allocated_storage= 150
