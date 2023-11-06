@@ -1,4 +1,5 @@
 resource "aws_db_parameter_group" "parameter_group" {
+  count =  var.create ? 1 : 0
   name        = var.parameter_name
   description = var.description
   family      = var.family
