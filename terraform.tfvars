@@ -1,6 +1,6 @@
 identifier="rds-mysql-test"
 engine="MySQL"
-engine_version="8.0.28"
+engine_version="5.7"
 instance_class="db.m5.xlarge"
 allocated_storage= 150
 storage_type="gp2"
