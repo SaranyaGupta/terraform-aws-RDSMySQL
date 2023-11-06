@@ -394,7 +394,7 @@ variable "parameters" {
 variable "create_db_option_group" {
   description = "Create a database option group"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "option_group_name" {
