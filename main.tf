@@ -135,6 +135,6 @@ module "cloudwatch_alarm" {
   alarm_description = "This metric monitors RDS CPU utilization"
   actions_alarm = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
   actions_ok = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
-  db_instance_id = "${module.db_instance.db_instance_resource_id}"
+  db_instance_id = "${module.db_instance.db_instance_identifier}"
   db_instance_class = "db.t3a.large"
 }
