@@ -357,7 +357,7 @@ variable "subnet_ids" {
 variable "create_db_parameter_group" {
   description = "Whether to create a database parameter group"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "parameter_group_name" {
