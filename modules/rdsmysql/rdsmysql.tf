@@ -36,7 +36,7 @@ resource "aws_db_instance" "rdsmysql" {
 
   db_name                             = var.db_name
   username                            = var.username
-  password                            = var.password
+  password                            = var.manage_master_user_password ? null : var.password
   port                                = var.port
   domain                              = var.domain
   domain_iam_role_name                = var.domain_iam_role_name
