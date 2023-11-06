@@ -16,7 +16,6 @@ module "db_subnet_group" {
   source          = "./modules/db_subnet_group"
   create          = local.create_db_subnet_group
   subnet_name     = var.db_subnet_group_name
-  #subnet_name_prefix     = var.db_subnet_group_use_name_prefix
   description     = var.db_subnet_group_description
   subnet_ids      = var.subnet_ids
 
@@ -26,7 +25,6 @@ module "db_parameter_group" {
   source          = "./modules/db_parameter_group"
   create          = local.create_db_parameter_group
   parameter_name  = var.parameter_group_name
-  #parameter_name_prefix = var.parameter_group_use_name_prefix
   description     = var.parameter_group_description
   family          = var.family
   parameters      = var.parameters
