@@ -51,7 +51,7 @@ resource "aws_db_instance" "rdsmysql" {
   option_group_name      = var.option_group_name
   network_type           = var.network_type
 
-  availability_zone   = var.availability_zone
+  #availability_zone   = var.availability_zone
   multi_az            = var.multi_az
   iops                = var.iops
   storage_throughput  = var.storage_throughput
