@@ -28,7 +28,7 @@ db_instance_tags= {
     "Environment" = "test"}
 db_subnet_group_name= "rdsmysql-subnet"
 db_subnet_group_description= "test db rds mysql subnet group"
-subnet_ids=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
+subnet_ids=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7","subnet-0bbf1e60c1a0f1db1"]
 tags = {resource = "rdsmysql"}
 db_subnet_group_tags= {name="rdsmysql-subnet"}
 db_option_group_tags= {name="rdsmysql-option-group"}
