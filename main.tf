@@ -5,12 +5,8 @@ locals {
   create_db_subnet_group    = var.create_db_subnet_group
   create_db_parameter_group = var.create_db_parameter_group
   create_db_instance        = var.create_db_instance
-
-  db_subnet_group_name    = var.create_db_subnet_group ? module.db_subnet_group.db_subnet_group_id : var.db_subnet_group_name
-  parameter_group_name = var.create_db_parameter_group ? module.db_parameter_group.db_parameter_group_id : var.parameter_group_name
-
   create_db_option_group = var.create_db_option_group
-  option_group           = local.create_db_option_group ? module.db_option_group.db_option_group_id : var.option_group_name
+  
 }
 
 module "db_subnet_group" {
@@ -71,9 +67,9 @@ module "db_instance" {
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
   vpc_security_group_ids              = var.vpc_security_group_ids
-  db_subnet_group_name                = local.db_subnet_group_name
-  parameter_group_name                = local.parameter_group_name
-  option_group_name                   = local.option_group
+  db_subnet_group_name                = module.db_subnet_group.db_subnet_group_id[count.index]
+  parameter_group_name                = module.db_parameter_group.db_parameter_group_id[count.index]
+  option_group_name                   = module.db_option_group.db_option_group_id[count.index]
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az
