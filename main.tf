@@ -41,7 +41,7 @@ module "db_option_group" {
   tags = merge(var.tags, var.db_option_group_tags)
 }
 module "db_instance" {
-  source = "./modules/rdsmysql"
+  source = "./modules/rdsmssql"
   create                              = local.create_db_instance
   identifier                          = var.identifier
   use_identifier_prefix               = var.instance_use_identifier_prefix
