@@ -24,7 +24,7 @@ enabled_cloudwatch_logs_exports=["error","general","slowquery"]
 cloudwatch_log_group_retention_in_days=7
 deletion_protection=true
 #for mssql
-character_set_name=Latin1_General_CI_AS
+character_set_name="Latin1_General_CI_AS"
 db_instance_tags= {
     "Owner"       = "user",
     "Environment" = "test"}
