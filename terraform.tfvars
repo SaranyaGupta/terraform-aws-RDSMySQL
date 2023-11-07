@@ -37,7 +37,7 @@ db_option_group_tags= {name="rdsmssql-option-group"}
 db_parameter_group_tags= {name="rdsmssql-parameter-group"}
 parameter_group_name= "rdsmssql-parameter-group"
 parameter_group_description= "test db rds mssql parameter group"
-family= "sqlserver-15.0"
+family= "sqlserver-se-15.0"
 major_engine_version= "15.00"
 option_group_name= "rdsmssql-option-group"
 option_group_description= "test db rds mssql option group" 
