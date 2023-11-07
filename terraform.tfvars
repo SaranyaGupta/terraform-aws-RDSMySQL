@@ -1,5 +1,5 @@
 identifier="rds-mssql-test"
-engine="sqlserver"
+engine="sqlserver-se"
 engine_version="15.00"
 instance_class="db.t3.large"
 allocated_storage= 3500
