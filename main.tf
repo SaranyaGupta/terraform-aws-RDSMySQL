@@ -65,8 +65,8 @@ module "db_instance" {
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
   vpc_security_group_ids              = var.vpc_security_group_ids
   db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name[0]}"
-  parameter_group_name                = "${module.db_subnet_group.db_parameter_group_name[0]}"
-  option_group_name                   = "${module.db_subnet_group.db_option_group_name[0]}"
+  parameter_group_name                = "${module.db_parameter_group.db_parameter_group_name[0]}"
+  option_group_name                   = "${module.db_option_group.db_option_group_name[0]}"
   network_type                        = var.network_type
   availability_zone                   = var.availability_zone
   multi_az                            = var.multi_az
