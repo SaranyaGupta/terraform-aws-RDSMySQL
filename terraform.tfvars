@@ -1,6 +1,6 @@
 identifier="rds-mssql-test"
 engine="sqlserver-se"
-engine_version="15.00"
+engine_version="14.00"
 instance_class="db.t3.large"
 allocated_storage= 3500
 storage_type="gp2"
@@ -37,8 +37,8 @@ db_option_group_tags= {name="rdsmssql-option-group"}
 db_parameter_group_tags= {name="rdsmssql-parameter-group"}
 parameter_group_name= "rdsmssql-parameter-group"
 parameter_group_description= "test db rds mssql parameter group"
-family= "sqlserver-se-15.0"
-major_engine_version= "15.00"
+family= "sqlserver-se-14.0"
+major_engine_version= "14.00"
 option_group_name= "rdsmssql-option-group"
 option_group_description= "test db rds mssql option group" 
 parameters = [{
