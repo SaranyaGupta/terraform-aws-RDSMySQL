@@ -6,6 +6,21 @@ locals {
   create_db_parameter_group = var.create_db_parameter_group
   create_db_instance        = var.create_db_instance
   create_db_option_group = var.create_db_option_group
+  name = var.security_rules
+  flat_security_rules = merge([
+      for sg, rules in var.security_rules:
+         {
+           for rule, vals in rules:
+             "${sg}-${rule}" => merge(vals, {name = sg})
+         }
+    ]...) # please, do NOT remove the dots
+  flat_security_rules1 = merge([
+      for sg, rules in var.existing_sg_rules:
+         {
+           for rule, vals in rules:
+             "${sg}-${rule}" => merge(vals, {name = sg})
+         }
+    ]...) # please, do NOT remove the dots
   }
 
 module "db_subnet_group" {
@@ -40,24 +55,8 @@ module "db_option_group" {
 
   tags = merge(var.tags, var.db_option_group_tags)
 }
-locals {
-  name = var.security_rules
-  flat_security_rules = merge([
-      for sg, rules in var.security_rules:
-         {
-           for rule, vals in rules:
-             "${sg}-${rule}" => merge(vals, {name = sg})
-         }
-    ]...) # please, do NOT remove the dots
-  flat_security_rules1 = merge([
-      for sg, rules in var.existing_sg_rules:
-         {
-           for rule, vals in rules:
-             "${sg}-${rule}" => merge(vals, {name = sg})
-         }
-    ]...) # please, do NOT remove the dots
-}
-resource "aws_security_group" "ec2_security_groups" {
+
+resource "aws_security_group" "rds_security_groups" {
   for_each = local.name
   name   = each.key
   vpc_id = "vpc-0777935da25d06fe3"
@@ -71,11 +70,13 @@ resource "aws_security_group_rule" "rules" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
+  security_group_id = aws_security_group.rds_security_groups[each.value.name].id
 }
+/*
 data "aws_security_group" "selected" {
   id = "sg-0bd541cafc1955479"
 }
+*/
 resource "aws_security_group_rule" "existing_sg" {
   for_each          = local.flat_security_rules1
   type              = each.value.type
@@ -84,7 +85,7 @@ resource "aws_security_group_rule" "existing_sg" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = data.aws_security_group.selected.id
+  security_group_id = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
 }
 
 module "db_instance" {
@@ -110,7 +111,7 @@ module "db_instance" {
   custom_iam_instance_profile         = var.custom_iam_instance_profile
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
-  vpc_security_group_ids              = var.vpc_security_group_ids
+  vpc_security_group_ids              = concat(aws_security_group.rds_security_groups.id[*],"sg-0bd541cafc1955479","sg-0294c098f15df980e")
   db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name[0]}"
   parameter_group_name                = "${module.db_parameter_group.db_parameter_group_name[0]}"
   option_group_name                   = "${module.db_option_group.db_option_group_name[0]}"
