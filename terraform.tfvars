@@ -71,7 +71,7 @@ security_rules = {
     "rule2" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
   }
   sg2 = {
-    "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp"
+    "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp" , cidr_blocks = ["0.0.0.0/0"], description = "For SSH"
   }
 }
 }
