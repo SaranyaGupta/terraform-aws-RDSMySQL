@@ -67,6 +67,19 @@ resource "aws_security_group_rule" "rules" {
   description       = each.value.description
   security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
 }
+data "aws_security_group" "selected" {
+  id = ["sg-0bd541cafc1955479"]
+}
+resource "aws_security_group_rule" "existing_sg" {
+  for_each          = local.flat_security_rules
+  type              = each.value.type
+  from_port         = each.value.from_port
+  to_port           = each.value.to_port
+  protocol          = each.value.protocol
+  cidr_blocks       = each.value.cidr_blocks
+  description       = each.value.description
+  security_group_id = aws_security_group.selected[each.value].id
+}
 
 module "db_instance" {
   source = "./modules/rdsmysql"
