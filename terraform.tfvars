@@ -41,14 +41,14 @@ family= "sqlserver-se-14.0"
 major_engine_version= "14.00"
 option_group_name= "rdsmssql-option-group"
 option_group_description= "test db rds mssql option group" 
-parameters = [{
-      "name"  = "character_set_client"
-      "value" = "utf8mb4"
+#parameters = [{
+     # "name"  = "character_set_client"
+    #  "value" = "utf8mb4"
      # },
    # {
     #  "name"  = "character_set_server"
      # "value" = "utf8mb4"
-    }]
+   # }]
 options = [
         {
           name  = "SERVER_AUDIT_EVENTS"
