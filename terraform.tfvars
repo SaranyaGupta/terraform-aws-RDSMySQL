@@ -33,7 +33,7 @@ Name="${module.db_instance.db_instance_name}",
 Product="xyz",
 Role="Database",
 ServiceCriticality="High",
-SupportContact=Support@gmail.com"
+SupportContact="Support@gmail.com"
 }
 db_subnet_group_name="rdsmysql-subnet"
 db_subnet_group_description= "test db rds mysql subnet group"
