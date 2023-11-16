@@ -4,7 +4,7 @@ output "db_subnet_group_id" {
 }
 output "db_subnet_group_name" {
   description = "The db subnet group name"
-  value       = try(aws_db_subnet_group.subnet_name[*].id, null)
+  value       = try(aws_db_subnet_group.subnet_groups[*].name, null)
 }
 output "db_subnet_group_arn" {
   description = "The ARN of the db subnet group"
