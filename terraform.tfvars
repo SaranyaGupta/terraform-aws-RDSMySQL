@@ -25,15 +25,15 @@ deletion_protection=true
 #for mssql
 #character_set_name="Latin1_General_CI_AS"
 db_instance_tags= {
-"ApplicationOwner"="abc@abc.com",
-"BusinessOwner"="abc@abc.com",
-"CostCenterDept"="IS Infrastructure",
-"Environment"="Test",
-"Name"="${module.db_instance.db_instance_name}",
-"Product"="xyz",
-"Role"="Database",
-"ServiceCriticality"="High",
-"SupportContact"=Support@abc.com"
+ApplicationOwner= "abc@gmail.com",
+BusinessOwner="abc@gmail.com",
+CostCenterDept="IS Infrastructure",
+Environment="Test",
+Name="${module.db_instance.db_instance_name}",
+Product="xyz",
+Role="Database",
+ServiceCriticality="High",
+SupportContact=Support@gmail.com"
 }
 db_subnet_group_name="rdsmysql-subnet"
 db_subnet_group_description= "test db rds mysql subnet group"
