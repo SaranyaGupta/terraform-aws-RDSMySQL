@@ -20,7 +20,8 @@ backup_retention_period=14
 backup_window="09:46-10:16"
 max_allocated_storage=5000
 create_monitoring_role=true
-enabled_cloudwatch_logs_exports=["error","general","slowquery"]
+#enabled_cloudwatch_logs_exports=["error","general","slowquery"]
+enabled_cloudwatch_logs_exports=["error"]
 cloudwatch_log_group_retention_in_days=7
 deletion_protection=true
 #for mssql
