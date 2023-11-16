@@ -64,7 +64,7 @@ module "db_instance" {
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
   vpc_security_group_ids              = var.vpc_security_group_ids
-  db_subnet_group_name                = toset("${module.db_subnet_group.db_subnet_group_name}")
+  db_subnet_group_name                = join("${module.db_subnet_group.db_subnet_group_name}")
   parameter_group_name                = var.parameter_group_name
   option_group_name                   = var.option_group_name
   network_type                        = var.network_type
