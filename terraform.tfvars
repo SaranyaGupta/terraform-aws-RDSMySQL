@@ -28,7 +28,7 @@ character_set_name="Latin1_General_CI_AS"
 db_instance_tags= {
     "Owner"       = "user",
     "Environment" = "test"}
-db_subnet_group_name= "rdsmssql-subnet"
+db_subnet_group_name="rdsmssql-subnet"
 db_subnet_group_description= "test db rds mssql subnet group"
 subnet_ids=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7","subnet-0bbf1e60c1a0f1db1"]
 tags = {resource = "rdsmssql"}
@@ -44,10 +44,10 @@ option_group_description= "test db rds mssql option group"
 parameters = [{
       "name"  = "character_set_client"
       "value" = "utf8mb4"
-      },
-    {
-      "name"  = "character_set_server"
-      "value" = "utf8mb4"
+     # },
+   # {
+    #  "name"  = "character_set_server"
+     # "value" = "utf8mb4"
     }]
 options = [
         {
