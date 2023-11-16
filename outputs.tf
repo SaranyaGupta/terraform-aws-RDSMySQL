@@ -116,7 +116,10 @@ output "db_parameter_group_id" {
   description = "The db parameter group id"
   value       = module.db_parameter_group.db_parameter_group_id
 }
-
+output "db_parameter_group_name" {
+  description = "The db parameter group name"
+  value       = module.db_parameter_group.db_parameter_group_name
+}
 output "db_parameter_group_arn" {
   description = "The ARN of the db parameter group"
   value       = module.db_parameter_group.db_parameter_group_arn
@@ -126,6 +129,11 @@ output "db_parameter_group_arn" {
 output "db_option_group_id" {
   description = "The db option group id"
   value       = module.db_option_group.db_option_group_id
+}
+
+output "db_option_group_name" {
+  description = "The db option group name"
+  value       = module.db_option_group.db_option_group_name
 }
 
 output "db_option_group_arn" {
