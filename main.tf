@@ -57,8 +57,6 @@ locals {
          }
     ]...) # please, do NOT remove the dots
 }
-}
-
 resource "aws_security_group" "ec2_security_groups" {
   for_each = local.name
   name   = each.key
