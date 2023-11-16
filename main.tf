@@ -54,7 +54,7 @@ locals {
 resource "aws_security_group" "ec2_security_groups" {
   for_each = local.name
   name   = each.key
-  vpc_id = data.aws_vpc.selected.id
+  vpc_id = "vpc-0777935da25d06fe3"
 }
 
 resource "aws_security_group_rule" "rules" {
