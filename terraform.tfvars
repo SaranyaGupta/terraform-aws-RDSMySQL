@@ -1,7 +1,7 @@
 identifier="rds-mssql-test"
 engine="sqlserver-se"
 engine_version="14.00"
-instance_class="db.t3.large"
+instance_class="db.m5.large"
 allocated_storage= 3500
 storage_type="gp2"
 license_model="license-included"
