@@ -67,7 +67,7 @@ resource "aws_security_group_rule" "rules" {
   description       = each.value.description
   security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
 }
-/*
+
 module "db_instance" {
   source = "./modules/rdsmysql"
   create                              = local.create_db_instance
@@ -166,4 +166,3 @@ module "cloudwatch_alarm" {
   db_instance_id = "${module.db_instance.db_instance_identifier}"
   db_instance_class = "db.t3a.large"
 }
-*/
