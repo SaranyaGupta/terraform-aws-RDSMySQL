@@ -84,7 +84,7 @@ resource "aws_security_group_rule" "existing_sg" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = data.selected[each.value.name].id
+  security_group_id = data.aws_security_group.selected.id
 }
 
 module "db_instance" {
