@@ -73,7 +73,9 @@ resource "aws_security_group_rule" "rules" {
   description       = each.value.description
   security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
 }
-
+data "aws_security_group" "selected" {
+  id = ["sg-0bd541cafc1955479"]
+}
 resource "aws_security_group_rule" "existing_sg" {
   for_each          = local.flat_security_rules1
   type              = each.value.type
