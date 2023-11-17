@@ -10,7 +10,7 @@ locals {
     ]...) # please, do NOT remove the dots
 }
 
-resource "aws_security_group" "ec2_security_groups" {
+resource "aws_security_group" "rds_security_groups" {
   for_each = local.name
   name   = each.key
   vpc_id = var.vpc_id
@@ -24,5 +24,5 @@ resource "aws_security_group_rule" "rules" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
+  security_group_id = aws_security_group.rds_security_groups[each.value.name].id
 }
