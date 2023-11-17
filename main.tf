@@ -43,11 +43,13 @@ module "db_option_group" {
 }
 module "new_security_group" {
   source = "./modules/security_group"
-  #create                              = local.create_new_sg
   security_rules = var.security_rules  
   vpc_id = var.vpc_id
 }
-
+module "existing_sg_rules" {
+  source = "./modules/existing_sg_rules"
+  security_rules = var.existing_sg_rules
+}
 
 module "db_instance" {
   source = "./modules/rdsmysql"
