@@ -17,6 +17,6 @@ resource "aws_security_group_rule" "rules" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = [each.value.name].id
+  security_group_id = name[each.value].id
   }
   
