@@ -1,5 +1,4 @@
-variable "security_group_ids"
-{
+variable "security_group_ids"{
 type = list
 default = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
 }
