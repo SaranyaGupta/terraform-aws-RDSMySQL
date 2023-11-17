@@ -1,3 +1,6 @@
+variable "vpc_id" {
+type = string
+}
 variable "security_rules" {
 
       type = map(map(object({
