@@ -9,3 +9,7 @@ variable "existing_sg_rules" {
         cidr_blocks = list(string)
       })))
     }
+variable sg_ids {
+type = list(string)
+default = ["default","sg3"]
+}
