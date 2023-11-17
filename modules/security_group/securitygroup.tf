@@ -1,9 +1,9 @@
 locals {
   flat_security_rules = merge([
-      for sg, rules in var.security_rules:
+      for new_sg, rules in var.security_rules:
          {
            for rule, vals in rules:
-             "${sg}-${rule}" => merge(vals, {sg_name = sg})
+             "${new_sg}-${rule}" => merge(vals, {name = new_sg})
          }
     ]...) # please, do NOT remove the dots
 }
@@ -11,7 +11,7 @@ locals {
 resource "aws_security_group" "ec2_security_groups" {
   for_each = local.name
   name   = each.key
-  vpc_id = "vpc-0777935da25d06fe3"
+  vpc_id = var.vpc_id
 }
 
 resource "aws_security_group_rule" "rules" {
@@ -22,5 +22,5 @@ resource "aws_security_group_rule" "rules" {
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
   description       = each.value.description
-  security_group_id = aws_security_group.ec2_security_groups[each.value.sg_name].id
+  security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
 }
