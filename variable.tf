@@ -1,3 +1,10 @@
+variable "security_group_ids"{
+type = list
+default = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
+}
+variable "vpc_id" {
+type = string
+}
 variable "security_rules" {
 
       type = map(map(object({
@@ -9,7 +16,19 @@ variable "security_rules" {
         cidr_blocks = list(string)
       })))
     }
+/*
+variable "existing_sg_rules" {
 
+      type = map(map(object({
+        type        = string
+        description = string
+        from_port   = number
+        to_port     = number
+        protocol    = string
+        cidr_blocks = list(string)
+      })))
+    }
+*/
 variable "identifier" {
   description = "The name of the RDS instance"
   type        = string

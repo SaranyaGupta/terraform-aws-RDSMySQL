@@ -9,3 +9,6 @@ variable "security_rules" {
         cidr_blocks = list(string)
       })))
     }
+variable "vpc_id" {
+type = string
+}

@@ -6,6 +6,7 @@ locals {
   create_db_parameter_group = var.create_db_parameter_group
   create_db_instance        = var.create_db_instance
   create_db_option_group = var.create_db_option_group
+  #create_new_sg            = var.create_new_sg
   }
 
 module "db_subnet_group" {
@@ -15,7 +16,7 @@ module "db_subnet_group" {
   description     = var.db_subnet_group_description
   subnet_ids      = var.subnet_ids
 
-  tags = merge(var.tags, var.db_subnet_group_tags)
+  tags = merge(var.db_instance_tags, var.db_subnet_group_tags)
 }
 module "db_parameter_group" {
   source          = "./modules/db_parameter_group"
@@ -25,7 +26,7 @@ module "db_parameter_group" {
   family          = var.family
   parameters      = var.parameters
 
-  tags = merge(var.tags, var.db_parameter_group_tags)
+  tags = merge(var.db_instance_tags, var.db_parameter_group_tags)
 }
 
 module "db_option_group" {
@@ -38,35 +39,15 @@ module "db_option_group" {
   options                  = var.options
   timeouts                 = var.option_group_timeouts
 
-  tags = merge(var.tags, var.db_option_group_tags)
+  tags = merge(var.db_instance_tags, var.db_option_group_tags)
 }
-locals {
-  name = var.security_rules
-  flat_security_rules = merge([
-      for sg, rules in var.security_rules:
-         {
-           for rule, vals in rules:
-             "${sg}-${rule}" => merge(vals, {name = sg})
-         }
-    ]...) # please, do NOT remove the dots
+module "new_security_group" {
+  source = "./modules/security_group"
+  #create                              = local.create_new_sg
+  security_rules = var.security_rules  
+  vpc_id = var.vpc_id
 }
 
-resource "aws_security_group" "ec2_security_groups" {
-  for_each = local.name
-  name   = each.key
-  vpc_id = "vpc-0777935da25d06fe3"
-}
-
-resource "aws_security_group_rule" "rules" {
-  for_each          = local.flat_security_rules
-  type              = each.value.type
-  from_port         = each.value.from_port
-  to_port           = each.value.to_port
-  protocol          = each.value.protocol
-  cidr_blocks       = each.value.cidr_blocks
-  description       = each.value.description
-  security_group_id = aws_security_group.ec2_security_groups[each.value.name].id
-}
 
 module "db_instance" {
   source = "./modules/rdsmysql"
@@ -91,7 +72,7 @@ module "db_instance" {
   custom_iam_instance_profile         = var.custom_iam_instance_profile
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
-  vpc_security_group_ids              = var.vpc_security_group_ids
+  vpc_security_group_ids              = concat("${module.new_security_group.id[*]}",var.security_group_ids[*])
   db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name[0]}"
   parameter_group_name                = "${module.db_parameter_group.db_parameter_group_name[0]}"
   option_group_name                   = "${module.db_option_group.db_option_group_name[0]}"

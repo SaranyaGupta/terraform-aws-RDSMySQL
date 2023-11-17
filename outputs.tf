@@ -1,3 +1,7 @@
+output "id" {
+  description = "The security group id"
+  value       = module.new_security_group.id
+}
 output "enhanced_monitoring_iam_role_name" {
   description = "The name of the monitoring role"
   value       = module.db_instance.enhanced_monitoring_iam_role_name
