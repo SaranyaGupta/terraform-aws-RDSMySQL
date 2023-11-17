@@ -16,7 +16,6 @@ variable "security_rules" {
         cidr_blocks = list(string)
       })))
     }
-/*
 variable "existing_sg_rules" {
 
       type = map(map(object({
@@ -28,7 +27,6 @@ variable "existing_sg_rules" {
         cidr_blocks = list(string)
       })))
     }
-*/
 variable "identifier" {
   description = "The name of the RDS instance"
   type        = string
