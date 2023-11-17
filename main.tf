@@ -48,7 +48,7 @@ module "new_security_group" {
 }
 module "existing_sg_rules" {
   source = "./modules/existing_sg_rules"
-  security_rules = var.existing_sg_rules
+  existing_sg_rules = var.existing_sg_rules
 }
 
 module "db_instance" {
