@@ -11,5 +11,6 @@ variable "existing_sg_rules" {
     }
 variable sg_ids {
 type = list(string)
-default = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
+default = []
+#default = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
 }
