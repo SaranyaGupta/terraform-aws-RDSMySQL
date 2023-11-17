@@ -77,10 +77,10 @@ security_rules = {
 }
 vpc_id = "vpc-0777935da25d06fe3"
 existing_sg_rules = {
-default = {
+sg-0bd541cafc1955479 = {
 "rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
 },
-sg3 = {
+sg-0294c098f15df980e = {
 "rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
 }
 }
