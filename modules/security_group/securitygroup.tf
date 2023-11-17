@@ -1,4 +1,6 @@
 locals {
+  name = var.security_rules
+
   flat_security_rules = merge([
       for new_sg, rules in var.security_rules:
          {
