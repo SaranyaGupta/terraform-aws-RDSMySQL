@@ -74,7 +74,7 @@ module "db_instance" {
   custom_iam_instance_profile         = var.custom_iam_instance_profile
   manage_master_user_password         = var.manage_master_user_password
   master_user_secret_kms_key_id       = var.master_user_secret_kms_key_id
-  vpc_security_group_ids              = concat("${module.new_security_group.id[*]}",var.security_group_ids[*])
+  vpc_security_group_ids              = concat(${module.new_security_group.id[*]},var.security_group_ids[*])
   db_subnet_group_name                = "${module.db_subnet_group.db_subnet_group_name[0]}"
   parameter_group_name                = "${module.db_parameter_group.db_parameter_group_name[0]}"
   option_group_name                   = "${module.db_option_group.db_option_group_name[0]}"
