@@ -563,3 +563,50 @@ variable "db_instance_role_associations" {
   type        = map(any)
   default     = {}
 }
+variable "threshold" {
+  type        = number
+  default     = 80
+  description = "The value against which the specified statistic is compared."
+}
+variable "statistic" {
+  type        = string
+  default     = "Average"
+  description = "statistic period."
+}
+variable "period" {
+  type        = number
+  default     = 300
+  description = "The period in seconds over which the specified statistic is applied."
+}
+variable "create_high_cpu_alarm" {
+  type        = bool
+  default     = true
+  description = "Whether or not to create the high cpu alarm.  Default is to create it (for backwards compatible support)"
+}
+variable "create_memory_too_low_alarm" {
+  type        = bool
+  default     = true
+  description = "Whether or not to create the memory_too_low_alarm.  Default is to create it (for backwards compatible support)"
+}
+variable "create_storage_space_too_low_alarm" {
+  type        = bool
+  default     = true
+  description = "Whether or not to create the storage_space_too_low_alarm  Default is to create it (for backwards compatible support)"
+}
+
+variable "actions_alarm" {
+  type        = list
+  default     = []
+  description = "A list of actions to take when alarms are triggered. Will likely be an SNS topic for event distribution."
+}
+
+variable "actions_ok" {
+  type        = list
+  default     = []
+  description = "A list of actions to take when alarms are cleared. Will likely be an SNS topic for event distribution."
+}
+variable "db_instance_class" {
+  type      = string
+  description = "The rds instance class, e.g. db.t3.medium"
+}
+
