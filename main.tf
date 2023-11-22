@@ -133,7 +133,7 @@ module "db_instance" {
   tags = merge(var.tags, var.db_instance_tags)
 }
 module "cloudwatch_alarm" {
-  source =  "./modules/cloudwatch_alarm/create_high_cpu_alarm"
+  source =  "./modules/cloudwatch_alarm"
   create_high_cpu_alarm = true
   name                  = "test-cpu-alarm"
   comparison_operator    = "GreaterThanOrEqualToThreshold"
