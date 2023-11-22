@@ -600,7 +600,7 @@ variable "actions_alarm" {
   description = "A list of actions to take when alarms are triggered. Will likely be an SNS topic for event distribution."
 }
 
-variable "actions_ok" {
+variable "ok_alarm" {
   type        = list
   default     = []
   description = "A list of actions to take when alarms are cleared. Will likely be an SNS topic for event distribution."
