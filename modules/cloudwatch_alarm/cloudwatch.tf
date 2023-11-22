@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   namespace           = "AWS/RDS"
   period              = var.period
   statistic           = var.statistic_period
-  threshold           = var.metric_threshold
+  threshold           = var.CPU_threshold
   alarm_description   = "Alarm when CPU usage is above 80%"
   alarm_actions       = var.actions_alarm
   ok_actions          = var.actions_ok
@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_too_low" {
   namespace           = "AWS/RDS"
   period              = var.period
   statistic           = var.statistic_period
-  threshold           = var.metric_threshold
+  threshold           = var.Memory_threshold
   alarm_description   = "Average database freeable memory too low"
   alarm_actions       = var.actions_alarm
   ok_actions          = var.actions_ok
@@ -44,7 +44,7 @@ resource "aws_cloudwatch_metric_alarm" "storage_space_too_low" {
   namespace           = "AWS/RDS"
   period              = var.period
   statistic           = var.statistic_period
-  threshold           = var.metric_threshold
+  threshold           = var.storage_threshold
   alarm_description   = "Average database free storage space too low"
   alarm_actions       = var.actions_alarm
   ok_actions          = var.actions_ok
