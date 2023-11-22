@@ -563,9 +563,19 @@ variable "db_instance_role_associations" {
   type        = map(any)
   default     = {}
 }
-variable "threshold" {
+variable "CPU_threshold" {
   type        = number
   default     = 80
+  description = "The value against which the specified statistic is compared."
+}
+variable "Memory_threshold" {
+  type        = number
+  default     = 4000
+  description = "The value against which the specified statistic is compared."
+}
+variable "storage_threshold" {
+  type        = number
+  default     = 20480
   description = "The value against which the specified statistic is compared."
 }
 variable "statistic" {
