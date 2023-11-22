@@ -8,9 +8,19 @@ variable "name" {
   default     = ""
   description = "Alarm Name Prefix"
 }
-variable "metric_threshold" {
+variable "CPU_threshold" {
   type        = number
-  default     = 40
+  default     = 80
+  description = "The value against which the specified statistic is compared."
+}
+variable "Memory_threshold" {
+  type        = number
+  default     = 4000
+  description = "The value against which the specified statistic is compared."
+}
+variable "storage_threshold" {
+  type        = number
+  default     = 20480
   description = "The value against which the specified statistic is compared."
 }
 variable "evaluation_period" {
