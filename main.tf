@@ -133,8 +133,8 @@ module "db_instance" {
   tags = merge(var.tags, var.db_instance_tags)
 }
 module "cloudwatch_alarm" {
-  source =  "./modules/cloudwatch_alarm"
-  create_high_cpu_alarm = true
+  source =  "./modules/cloudwatch_alarm/cloudwatch.tf/aws_cloudwatch_metric_alarm.cpu_utilization_too_high"
+  create_high_cpu_alarm = true.
   name                  = "test-cpu-alarm"
   comparison_operator    = "GreaterThanOrEqualToThreshold"
   evaluation_period = "5"
