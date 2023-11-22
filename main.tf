@@ -145,5 +145,5 @@ module "cloudwatch_alarm" {
   actions_alarm = var.actions_alarm
   actions_ok = var.ok_alarm
   db_instance_id = "${module.db_instance.db_instance_identifier}"
-  db_instance_class = var.instance_class
+  instance_class = var.instance_class
 }
