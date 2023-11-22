@@ -6,7 +6,9 @@ locals {
   create_db_parameter_group = var.create_db_parameter_group
   create_db_instance        = var.create_db_instance
   create_db_option_group = var.create_db_option_group
-  #create_new_sg            = var.create_new_sg
+  create_high_cpu_alarm = var.create_high_cpu_alarm
+  create_storage_space_too_low_alarm = var.create_storage_space_too_low_alarm
+  create_memory_too_low_alarm = var.create_memory_too_low_alarm
   }
 
 module "db_subnet_group" {
@@ -133,19 +135,15 @@ module "db_instance" {
   tags = merge(var.tags, var.db_instance_tags)
 }
 module "cloudwatch_alarm" {
-  source =  "./modules/cloudwatch_alarm/cloudwatch.tf/aws_cloudwatch_metric_alarm.cpu_utilization_too_high"
-  create_high_cpu_alarm = true.
-  name                  = "test-cpu-alarm"
-  comparison_operator    = "GreaterThanOrEqualToThreshold"
-  evaluation_period = "5"
-  metric_name  = "CPUUtilization"
-  namespace        = "AWS/RDS"
-  period           ="120" #seconds
- statistic_period = "Average"
- metric_threshold = "80"
-  alarm_description = "This metric monitors RDS CPU utilization"
-  actions_alarm = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
-  actions_ok = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
+  source =  "./modules/cloudwatch_alarm"
+  create_high_cpu_alarm = local.create_high_cpu_alarm
+  create_storage_space_too_low_alarm = local.create_storage_space_too_low_alarm
+  create_memory_too_low_alarm = local.create_memory_too_low_alarm
+  period           = var.period
+  statistic_period = var.statistic_period
+  metric_threshold = var.threshold
+  actions_alarm = var.actions_alarm
+  actions_ok = var.ok_alarm
   db_instance_id = "${module.db_instance.db_instance_identifier}"
-  db_instance_class = "db.t3a.large"
+  db_instance_class = var.instance_class
 }
