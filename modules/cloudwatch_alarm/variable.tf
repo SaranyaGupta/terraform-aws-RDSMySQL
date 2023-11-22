@@ -55,6 +55,16 @@ variable "create_high_cpu_alarm" {
   default     = true
   description = "Whether or not to create the high cpu alarm.  Default is to create it (for backwards compatible support)"
 }
+variable "create_memory_too_low_alarm" {
+  type        = bool
+  default     = true
+  description = "Whether or not to create the memory_too_low_alarm.  Default is to create it (for backwards compatible support)"
+}
+variable "create_storage_space_too_low_alarm" {
+  type        = bool
+  default     = true
+  description = "Whether or not to create the storage_space_too_low_alarm  Default is to create it (for backwards compatible support)"
+}
 
 variable "actions_alarm" {
   type        = list
