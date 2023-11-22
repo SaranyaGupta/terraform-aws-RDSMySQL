@@ -605,8 +605,9 @@ variable "ok_alarm" {
   default     = []
   description = "A list of actions to take when alarms are cleared. Will likely be an SNS topic for event distribution."
 }
+/*
 variable "db_instance_class" {
   type      = string
   description = "The rds instance class, e.g. db.t3.medium"
 }
-
+*/
