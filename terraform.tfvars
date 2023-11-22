@@ -84,3 +84,5 @@ sg-0c5426001fd0fb679 = {
 #"rule1" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
 #}
 }
+ok_alarm = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
+actions_alarm = ["arn:aws:sns:us-east-2:215691912540:RDSAlarm"]
