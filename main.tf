@@ -141,7 +141,9 @@ module "cloudwatch_alarm" {
   create_memory_too_low_alarm = local.create_memory_too_low_alarm
   period           = var.period
   statistic_period = var.statistic
-  metric_threshold = var.threshold
+  Memory_threshold = var.Memory_threshold
+  CPU_threshold  =  var.CPU_threshold
+   storage_threshold = var.storage_threshold
   actions_alarm = var.actions_alarm
   actions_ok = var.ok_alarm
   db_instance_id = "${module.db_instance.db_instance_identifier}"
