@@ -28,6 +28,7 @@ variable "statistic_period" {
   default     = "60"
   description = "The number of seconds that make each statistic period."
 }
+/*
 variable "comparison_operator" {
   type        = string
   description = "The arithmetic operation to use when comparing the specified Statistic and Threshold."
@@ -45,6 +46,7 @@ variable "metric_name" {
   default     = "CPUUtilization"
   description = "The name for the alarm's associated metric."
 }
+*/
 variable "period" {
   type        = number
   default     = 120
