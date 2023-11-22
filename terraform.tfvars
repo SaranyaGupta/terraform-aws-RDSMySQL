@@ -1,8 +1,8 @@
 identifier="rds-mysql-test"
 engine="mysql"
 engine_version="5.7"
-instance_class="db.m5.xlarge"
-allocated_storage= 150
+instance_class="db.m5.large"
+allocated_storage= 10
 storage_type="gp2"
 license_model="general-public-license"
 db_name="testdb"
