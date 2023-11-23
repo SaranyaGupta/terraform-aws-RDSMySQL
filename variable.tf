@@ -120,6 +120,10 @@ variable "engine_version" {
   description = "The engine version to use"
   type        = string
   default     = null
+validation {
+   condition     =  var.engine_version > "8.0"
+   error_message = "Please provide a valid version"
+ }
 }
 
 variable "skip_final_snapshot" {
