@@ -63,7 +63,7 @@ resource "aws_db_instance" "rdsmysql" {
   apply_immediately           = var.apply_immediately
   maintenance_window          = var.maintenance_window
   #snapshot_identifier       = var.snapshot_identifier
-  #copy_tags_to_snapshot     = var.copy_tags_to_snapshot
+  copy_tags_to_snapshot     = var.copy_tags_to_snapshot
   skip_final_snapshot       = var.skip_final_snapshot
   #final_snapshot_identifier = var.final_snapshot_identifier
 
