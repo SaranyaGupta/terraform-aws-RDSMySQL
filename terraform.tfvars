@@ -1,7 +1,7 @@
 identifier="rds-mysql-test"
 engine="mysql"
 engine_version="8.0.35"
-instance_class="db.t3.small"
+instance_class="db.t3.medium"
 allocated_storage= 10
 storage_type="gp2"
 license_model="general-public-license"
