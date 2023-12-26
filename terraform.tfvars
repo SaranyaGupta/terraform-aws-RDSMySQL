@@ -43,7 +43,7 @@ db_parameter_group_tags= {name="rdsmysql-parameter-group"}
 parameter_group_name= "rdsmysql-parameter-group"
 parameter_group_description= "test db rds mysql parameter group"
 family= "mysql8.0"
-major_engine_version= "8.0.35"
+major_engine_version= "8.0"
 option_group_name= "rdsmysql-option-group"
 option_group_description= "test db rds mysql option group" 
 parameters = [{
