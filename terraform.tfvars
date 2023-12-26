@@ -1,11 +1,11 @@
 identifier="rds-mysql-test"
 engine="mysql"
-engine_version="5.7"
-instance_class="db.m5.large"
-allocated_storage= 10
+engine_version="8.0.35"
+instance_class="db.t3.small"
+allocated_storage= 2
 storage_type="gp2"
 license_model="general-public-license"
-db_name="testdb"
+db_name="RDS_Mysql_testdb"
 username="testuser"                        
 security_group_ids=["sg-0c5426001fd0fb679"]
 network_type="IPV4"
@@ -22,8 +22,7 @@ create_monitoring_role=true
 enabled_cloudwatch_logs_exports=["error","general","slowquery"]
 cloudwatch_log_group_retention_in_days=7
 deletion_protection=true
-#for mssql
-#character_set_name="Latin1_General_CI_AS"
+monitoring_role_name="rds_mysql_monitoring_role"
 db_instance_tags= {
 ApplicationOwner= "abc@gmail.com",
 BusinessOwner="abc@gmail.com",
@@ -43,8 +42,8 @@ db_option_group_tags= {name="rdsmysql-option-group"}
 db_parameter_group_tags= {name="rdsmysql-parameter-group"}
 parameter_group_name= "rdsmysql-parameter-group"
 parameter_group_description= "test db rds mysql parameter group"
-family= "mysql5.7"
-major_engine_version= "5.7"
+family= "mysql8.0"
+major_engine_version= "8.0.35"
 option_group_name= "rdsmysql-option-group"
 option_group_description= "test db rds mysql option group" 
 parameters = [{
@@ -66,12 +65,12 @@ options = [
         },
 ]
 security_rules = {
-  sg1 = {
+  rds_sg1_mysql = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" },
     "rule2" = { type = "ingress", from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" },
     "rule3" = { type = "egress", from_port = 22, to_port = 22, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "For SSH" }
   }
-  sg2 = {
+  rds_sg2_mysql = {
     "rule1" = { type = "ingress", from_port = 22, to_port = 22, protocol = "tcp" , cidr_blocks = ["0.0.0.0/0"], description = "For SSH"}
   }
 }
