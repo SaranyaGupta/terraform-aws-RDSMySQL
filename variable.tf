@@ -120,10 +120,12 @@ variable "engine_version" {
   description = "The engine version to use"
   type        = string
   default     = null
+/*
 validation {
    condition     =  var.engine_version >= "8.0"
    error_message = "Please provide a valid version"
  }
+*/
 }
 
 variable "skip_final_snapshot" {
@@ -244,7 +246,7 @@ variable "monitoring_role_arn" {
 variable "monitoring_role_name" {
   description = "Name of the IAM role which will be created when create_monitoring_role is enabled"
   type        = string
-  default     = "rds-monitoring-role"
+  default     = null
 }
 
 variable "monitoring_role_use_name_prefix" {
