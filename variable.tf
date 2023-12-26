@@ -121,7 +121,7 @@ variable "engine_version" {
   type        = string
   default     = null
 validation {
-   condition     =  var.engine_version > 9.0
+   condition     =  var.engine_version >= "8.0"
    error_message = "Please provide a valid version"
  }
 }
