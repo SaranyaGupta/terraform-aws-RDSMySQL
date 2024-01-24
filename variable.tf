@@ -5,6 +5,10 @@ default = ["sg-0bd541cafc1955479","sg-0294c098f15df980e"]
 variable "vpc_id" {
 type = string
 }
+variable "name" {
+  type        = string
+  description = "Alarm Name Prefix"
+}
 variable "security_rules" {
 
       type = map(map(object({
