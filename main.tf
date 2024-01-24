@@ -123,6 +123,7 @@ module "db_instance" {
 }
 module "cloudwatch_alarm" {
   source =  "./modules/cloudwatch_alarm"
+  name = var.name
   create_high_cpu_alarm = local.create_high_cpu_alarm
   create_storage_space_too_low_alarm = local.create_storage_space_too_low_alarm
   create_memory_too_low_alarm = local.create_memory_too_low_alarm
